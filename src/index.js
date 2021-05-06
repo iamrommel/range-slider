@@ -1,12 +1,12 @@
 import React from 'react'
 import './styles.css'
 
-export default ({ maximumInput = 300, startValue = 8, endValue = 120 }) => {
-  const [rangeMaxValue, setRangeMaxValue] = React.useState(endValue)
-  const [inverseRight, setInverseRight] = React.useState((endValue / maximumInput) * 100)
+export default ({ maximumInput = 300, value = { start: 8, end: 120 }, onChange }) => {
+  const [rangeMaxValue, setRangeMaxValue] = React.useState(value?.end)
+  const [inverseRight, setInverseRight] = React.useState((value?.end / maximumInput) * 100)
 
-  const [rangeMinValue, setRangeMinValue] = React.useState(startValue)
-  const [inverseLeft, setInverseLeft] = React.useState((startValue / maximumInput) * 100)
+  const [rangeMinValue, setRangeMinValue] = React.useState(value?.start)
+  const [inverseLeft, setInverseLeft] = React.useState((value?.start / maximumInput) * 100)
 
   const minRangeRef = React.useRef(null)
   const maxRangeRef = React.useRef(null)
@@ -18,6 +18,8 @@ export default ({ maximumInput = 300, startValue = 8, endValue = 120 }) => {
     setInverseLeft((newValue / maximumInput) * 100)
 
     setRangeMinValue(newValue)
+
+    onChange?.({ startValue: newValue, endValue: value?.end })
   }
 
   const onChangeMax = (e) => {
@@ -27,6 +29,7 @@ export default ({ maximumInput = 300, startValue = 8, endValue = 120 }) => {
     setInverseRight((newValue / maximumInput) * 100)
 
     setRangeMaxValue(newValue)
+    onChange?.({ startValue: value?.start, endValue: newValue })
   }
 
   return (
