@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.css'
 
-export default ({ maximumValue = 100, step = 1, value = { start: 8, end: 60 }, onChange }) => {
+export const RangeSlider = ({ maximumValue = 100, step = 1, value = { start: 8, end: 60 }, onChange }) => {
   const [rangeMaxValue, setRangeMaxValue] = React.useState(value?.end)
   const [inverseRight, setInverseRight] = React.useState((value?.end / maximumValue) * 100)
 
