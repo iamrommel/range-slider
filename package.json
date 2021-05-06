@@ -17,7 +17,7 @@
     "url": "git+https://github.com/iamrommel/range-slider.git"
   },
   "scripts": {
-    "test": "mocha --require ../../mocha-register.js --timeout 10000 './src/**/*.spec.js' --exit",
+    "test": "echo \"Nothing to test\"",
     "lint": "prettier --write \"src/**/*.js\" && eslint src/**/*.js --fix",
     "buildClean": "rimraf ./dist/*",
     "build": "webpack --mode production",
@@ -62,6 +62,7 @@
     "testdouble": "^3.16.1",
     "webpack": "5.32.0",
     "webpack-cli": "^4.6.0",
-    "webpack-dev-server": "3.11.2"
+    "webpack-dev-server": "3.11.2",
+    "css-loader": "^5.2.4"
   }
 }
