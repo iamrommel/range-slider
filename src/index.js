@@ -1,12 +1,12 @@
 import React from 'react'
 import './styles.css'
 
-export default ({ maximumInput = 300, value = { start: 8, end: 120 }, onChange }) => {
+export default ({ maximumValue = 100, step = 1, value = { start: 8, end: 60 }, onChange }) => {
   const [rangeMaxValue, setRangeMaxValue] = React.useState(value?.end)
-  const [inverseRight, setInverseRight] = React.useState((value?.end / maximumInput) * 100)
+  const [inverseRight, setInverseRight] = React.useState((value?.end / maximumValue) * 100)
 
   const [rangeMinValue, setRangeMinValue] = React.useState(value?.start)
-  const [inverseLeft, setInverseLeft] = React.useState((value?.start / maximumInput) * 100)
+  const [inverseLeft, setInverseLeft] = React.useState((value?.start / maximumValue) * 100)
 
   const minRangeRef = React.useRef(null)
   const maxRangeRef = React.useRef(null)
@@ -15,21 +15,21 @@ export default ({ maximumInput = 300, value = { start: 8, end: 120 }, onChange }
     const newValue = Math.min(e?.target?.value, rangeMaxValue)
     if (newValue >= rangeMaxValue) return
 
-    setInverseLeft((newValue / maximumInput) * 100)
+    setInverseLeft((newValue / maximumValue) * 100)
 
     setRangeMinValue(newValue)
 
-    onChange?.({ startValue: newValue, endValue: value?.end })
+    onChange?.({ start: newValue, end: value?.end })
   }
 
   const onChangeMax = (e) => {
     const newValue = Math.max(e?.target?.value, rangeMinValue)
     if (newValue <= rangeMinValue) return
 
-    setInverseRight((newValue / maximumInput) * 100)
+    setInverseRight((newValue / maximumValue) * 100)
 
     setRangeMaxValue(newValue)
-    onChange?.({ startValue: value?.start, endValue: newValue })
+    onChange?.({ start: value?.start, end: newValue })
   }
 
   return (
@@ -41,8 +41,8 @@ export default ({ maximumInput = 300, value = { start: 8, end: 120 }, onChange }
           <div
             className="range"
             style={{
-              left: `${(rangeMinValue / maximumInput) * 100}%`,
-              right: `${100 - (rangeMaxValue / maximumInput) * 100}%`,
+              left: `${(rangeMinValue / maximumValue) * 100}%`,
+              right: `${100 - (rangeMaxValue / maximumValue) * 100}%`,
             }}
           />
           <span className="thumb" style={{ left: `${inverseLeft}%` }} />
@@ -54,29 +54,9 @@ export default ({ maximumInput = 300, value = { start: 8, end: 120 }, onChange }
             <span id="value">{rangeMaxValue}</span>
           </div>
         </div>
-        <input
-          type="range"
-          tabIndex="0"
-          value={rangeMinValue}
-          max={maximumInput}
-          min={0}
-          step={1}
-          onChange={onChangeMin}
-          ref={minRangeRef}
-          id="minRange"
-        />
+        <input type="range" tabIndex="0" value={rangeMinValue} max={maximumValue} min={0} step={step} onChange={onChangeMin} ref={minRangeRef} />
 
-        <input
-          type="range"
-          tabIndex="1"
-          value={rangeMaxValue}
-          max={maximumInput}
-          min={0}
-          step={1}
-          onChange={onChangeMax}
-          ref={maxRangeRef}
-          id="maxRange"
-        />
+        <input type="range" tabIndex="1" value={rangeMaxValue} max={maximumValue} min={0} step={step} onChange={onChangeMax} ref={maxRangeRef} />
       </div>
     </React.Fragment>
   )
