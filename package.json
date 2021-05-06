@@ -1,6 +1,6 @@
 {
   "name": "@iamrommel-for-free/ranger-slider",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "The plain and dependency free Ranger Slider for React",
   "keywords": [],
   "author": "Rommel Manalo <manalo.rommel@gmail.com>",
@@ -24,7 +24,7 @@
     "buildWatch": "npm run buildClean && cross-env NODE_ENV=production  babel src --out-dir dist --source-maps --watch",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "deploy" : "npm run build && npm publish"
+    "deploy": "./publish.sh"
   },
   "homepage": "https://github.com/iamrommel/range-slider#readme",
   "peerDependencies": {
