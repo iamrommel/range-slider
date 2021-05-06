@@ -1,2 +1,3 @@
 # range-slider
-Plain range slider for React
+
+No dependency range slider for React
