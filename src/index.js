@@ -45,7 +45,7 @@ export default ({ maximumValue = 100, step = 1, value = { start: 8, end: 60 }, o
             }}
           />
           <span className="thumb" style={{ left: `${inverseLeft}%` }} />
-          <span className="thumb" style={{ left: `${inverseRight}%`, backgroundColor: 'red' }} />
+          <span className="thumb" style={{ left: `${inverseRight}%` }} />
           <div className="sign" style={{ left: `${inverseLeft}%` }}>
             <span id="value">{rangeMinValue}</span>
           </div>
